@@ -1,1 +1,3 @@
-
+* Time Series'te LSTM kullanilir. En uygun yöntem budur.
+* Early Stopping aslina Coross-validation gibidir ögrenmeyi nerede kesecegine karar veriyor. Icinde Patience var bunun anlami örnegin 2 itirasyona bak eger sonuclarda fazla bir desisiklik yoksa orada kes ve best agirligi ver. 
+* genarator : Bununla Train set formata sokulur. validation_generator : bununla da test kullanilarak karsilastirma yapilir. Model icersinde bu ikisi de loss lara. bakar ve karsilastirma yapar. overfittingi önlemek icin bu kullanilir. 
