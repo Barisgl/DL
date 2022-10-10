@@ -1,1 +1,7 @@
-
+* Date'leri index yapmamiz gerekiyor. Bunu yaparken parse kullanmazsak date-index olarak göstermiyor. (Dateindex) oluyor bu sayeede.
+* Bu Taskda sadece A ülkesini aldik ve zaten monat ve woche lerimiz oldugu icin sadece datumu biraktik. 
+* Ilk olarak bu projede sinüste denediklerimizi denedik. Sanki sadece tek feature varmis gibi. Cünkü söyle düsündü. Wocheler ve Daylerle birlikte zaten kendi icinde bir Patern olusturuyor. Aslinda genel olarak ilkel ML yöntemleri kullanilir, bir cok yerde. 
+* NLP de RNN CV da CNN ama diger her yerde ML tercih edilir. 
+* Batch Size lar önemli, 1 ile 10 arasinda ne fark var. Batch size örnegin 1 ise her 1 döngüde Evaluate ediyor. En iyisi 1 dir. Cünkü mesela 5 olsa 5 te 1 bakar ve hata olarak ortalamasini alir. Burada Model icerisinde bir katman daha olusturduk. Bundan dolayi ilk katmana return_sequences=True ekledik bunun sebei bir sonraki katmaninda kullanisli olmasini saglamak. Eger buna False derse mesela bizim döngümüz 12, bu durumda en son bilgiyi yani 12 deki bilgisiyi diger katmana aktarir, True dersek 12 deki bilginin tamamini aktarir. Modelin icerisindeki bir baska sey activation burada "tan" kullaniyoruz cünkü en kapsamlisi bu. En iyi bu calisir.
+*Early stopping varsa vaditaion_data da olmasli cünkü neye göre durduracagini bilmeli.
+* Bu problemde test ve train arasindakini dagilimi göz önünde bulundurmak lazim. Buradaki en büyük problemim testi cok kisa tutmakti ve overfitting oldu. 
