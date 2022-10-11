@@ -1,1 +1,14 @@
+* model val_loss ile loss arasinda bakip ikisininde minimize olmasini bekliyor. 
+* egitim icersinde kac length ile calisiyorsa  tahmini de ona göre yapiyoruz.
+* predict_s=[]
+*first_batch=train_s[-len:] = Ilk Batch imiz dikkate alinmayan model tarafindan traindeki son 24 
+*current_batch=first_batch.reshape((1,len,n_features)) : Generator 3 noyutlu girdigi icin bunu yaptik. 
+*for i in range(len):
+  current_pred=model.predict(current_batch) kalan kismi reshape den sonra predict ettik. 
 
+  predict_s.append(current_pred[0]) Daha sonra bunu ekledik.
+  current_batch=np.append(current_batch[:,1:,:],[current_pred],axis=1)
+  * Her zaman bir sonrakini predict etmek cok daha mantikli olur aslinda cünkü hata eklenerek gidiyor ve bu da basarida azalmaya sebep oluyor. 
+  * Tüm datayi train ederken val_data ya gerek yok cünkü önceki durumdan datanin hangi epochs a kadar gittigini biliyoruz.
+  * Bunun basarili olmama sebebi bir kere periyodik ve circe yok ve bütün datalara sahip degiliz. Feature eksikligi var, coåk az sayida feature imiz var.
+  * Homijaniti önemli örnegin bir sehre bakarken o sehri aliriz. Pazartesi ye bakarken sadece pazartesi verileri kullanlabilir. 
