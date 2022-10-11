@@ -1,1 +1,20 @@
+* Burada sade bir tane columnu predict edeceginz yani many to one. Bir öncekinde many to many vardi. 
+* Digerinde cikis 2 idi bunda bir tane sadece appliance i hesap edecegz. 
+train.loc[:,f_columns]=f_scaler.fit_transform(train[f_columns])
+train["Appliances"]=target_scaler.fit_transform(train[["Appliances"]])
 
+test.loc[:,f_columns]=f_scaler.transform(test[f_columns])
+test["Appliances"]=target_scaler.transform(test[["Appliances"]]) = Bir columnu hesap ederken böyle yapiyoruz. Giris ve cikislar farkli
+* Burasi öneli Genatör ile yapmadigimiz icin bu sekilde yapacagiz. Bunu sebebi örnegin 10 tane columnu sokacak ama sadece bir columnu tahmin edecek. O yüzden ayri ayri yapmakta fayda var. 
+* MAny to one olunca kendimiz function olusturuyoruz burasi önemli. 
+
+*def  create(X,y,time_steps):
+  Xs,ys=[],[]
+  for i in range(len(X)):
+    v=X.iloc[i:(i+time_steps)].values : Örnegin 24 lü ölcümlerimiz var 24 e kadar alip kaydeder
+    Xs.append(v)
+    ys.append(y.iloc[i+time_steps]) = Burada ise 25. alip targit yapar
+  return np.array(Xs),np.array(ys) Bu def ile bizim aralikllarimizi aliyor. Bunlari manuel olarak yaptik. 
+* Boyut farkliligi varsa bu notbookun kullanilmasi gerekekir. Generator ile olmaz. Dropout overfittingi engeller.
+*X_train.shape genarator de bunu yaparken targetleri cikariyorduk fakat burada X_train.shape[2] yaparak bütün hepsini aliyoruz. Target sütunu dahil tüm sütunlari aldik.
+* Manuel islem yapmak biraz tradational ML e benziyor burada validation split de var. 
